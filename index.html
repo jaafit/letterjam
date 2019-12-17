@@ -1,0 +1,133 @@
+<head>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+</head>
+
+
+<body>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
+        <h1>Letter Jam Practice</h1>
+
+        <div class="row">
+            <div class="col-xs-4">
+                <h1 id="letters"></h1>
+                <p id="possibilities0" class="possibility"></p>
+                <p id="possibilities1" class="possibility"></p>
+                <p id="possibilities2" class="possibility"></p>
+                <p id="possibilities3" class="possibility"></p>
+                <p id="possibilities4" class="possibility"></p>
+            </div>
+
+            <div class="col-xs-6">
+                <button id="refresh" class="btn btn-default" type="button">New Letters</button>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-12">
+                Players:
+                <div class="radio-inline">
+
+                    <label>
+                        <input type="radio" name="playerCountRadio" id="optionsRadios2" value="2" checked>
+                        2
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="playerCountRadio" id="optionsRadios3" value="3">
+                        3
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="playerCountRadio" id="optionsRadios4" value="4" checked>
+                        4
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="playerCountRadio" id="optionsRadios5" value="5" >
+                        5
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="playerCountRadio" id="optionsRadios6" value="6" >
+                        6
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <form id="clueform">
+                <div class="form-group">
+                        <input id="clue" autocomplete="off"/>
+                        <button type="submit" class="btn btn-success" id="submit" name="submit">Go</button>
+                        <span id="clueerrors"></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+
+        <div id="human-clue-table" class="hidden">
+            <div class="row">
+                <div class="col-xs-1 col-sm-2">Your clue: </div>
+                <div class="col-xs-1 col-sm-2">Length: </div>
+                <div class="col-xs-1 col-sm-2">Players: </div>
+                <div class="col-xs-1 col-sm-2">Non-Players:</div>
+                <div class="col-xs-1 col-sm-2">Wild:</div>
+                <div class="dis col-xs-1 col-sm-2"><a id="helplink" href="#help">Unambiguity:</a></div>
+            </div>
+            <div class="row">
+                <div class="dis col-xs-1 col-sm-2"><p id="hword"></p></div>
+                <div class="dis col-xs-1 col-sm-2"><p id="hlength"></p></div>
+                <div class="dis col-xs-1 col-sm-2"><p id="hplayers"></p></div>
+                <div class="dis col-xs-1 col-sm-2"><p id="hnpcs"></p></div>
+                <div class="dis col-xs-1 col-sm-2"><p id="hwild"></p></div>
+                <div class="dis col-xs-1 col-sm-2"><p id="hdis"></p></div>
+            </div>
+        </div>
+
+        <div id="ai-clue-table" class="hidden">
+            <div class="row">
+                <div class="col-xs-1 col-sm-2"><b>Top-10 Clues:</b></div>
+            </div>
+            <div id="ai-clues">
+            </div>
+        </div>
+
+        <div id="help" class="hidden">
+
+            <p>"Unambiguity" is a measurement of how sure the other players can be of their letters.  It's the sum of each player's unambiguity, which for each player is calculated as 1/N where N is the number of possible letters their letter could be.  </p>
+            <p>For example, if a player is looking at the clue "_lue", their possibilities are b,c,f,g.  4 possibilities gives an unambiguity of 0.25 (1/4) for that player.  If this were in a 3p game and the other player was looking at c_ue, they have only l as a possibility for an unambiguity of 1/1 = 1.  The total unambiguity of the clue is 0.25 + 1 = 1.25.</p>
+            <p>The clue you typed is assumed to be a valid word for this calculation.</p>
+            <p>When there are duplicate letters for the clue-giver to choose from, all possible sequences of letters are considered when calculating Unambiguity.  Only the best possible score is shown here.</p>
+            <p>You can see each possible letter for your clue by clicking on the other players' letters.</p>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+<script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="letterjam.js"></script>
+<script type="text/javascript" src="ui.js"></script>
+
+
+</body>
